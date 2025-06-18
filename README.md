@@ -61,6 +61,17 @@ KodiksCase is a layered .NET 8 application designed for managing orders, users, 
 - SQL Server database
 - RabbitMQ server running
 - Redis server running
+### Technologies and Libraries Used
+
+- **.NET 8** with ASP.NET Core Web API  
+- **Entity Framework Core** for ORM and database access  
+- **RabbitMQ.Client** for messaging  
+- **StackExchange.Redis** for caching  
+- **Serilog** for logging  
+- **Swagger** for API documentation  
+- **Postman** for API testing  
+- **Microsoft.Extensions.Logging** for structured logging  
+- **Microsoft.AspNetCore.Authentication.JwtBearer** for JWT authentication
 
 ### Configuration
 
@@ -117,11 +128,14 @@ Set up your `appsettings.json` with the following keys:
 
 ---
 
-## Testing
+## Usage & Testing
 
-- Swagger UI available at `https://localhost:<port>/swagger` for interactive API testing.
+- Use Swagger UI at `https://localhost:<port>/swagger` for interactive API testing.
 - Use the **Authorize** button in Swagger UI to set your JWT token.
-- Login to obtain token, then test protected endpoints.
+- To obtain a token:
+  - Use the `/api/user/login` endpoint with valid credentials.
+  - Copy the returned JWT token.
+  - Paste it into Swagger's **Authorize** dialog or Postman's authorization header.
 - Redis and RabbitMQ must be running for full functionality.
 - The Postman collection JSON file is located inside the **Postman** folder within the **API project** (`KodiksCase.Api`).  
   To use it:
@@ -130,6 +144,67 @@ Set up your `appsettings.json` with the following keys:
   3. Select the JSON file at `KodiksCase.Api/Postman/KodiksCase.postman_collection.json`.  
   4. The collection will be imported and ready for testing the API endpoints.
 
+### Test User Credentials
+
+| Full Name       | Email             | Password  |
+|-----------------|-------------------|-----------|
+| Kodiks Test     | test@kodiks.com   | 123456    |
+
+- Use these credentials to log in via the `/api/user/login` endpoint and get a JWT token for testing.
+
+### Example: Create Order Request
+
+Endpoint: `POST /api/orders/create`
+
+Request body example:
+
+```json
+{
+  "userId": "046a3a78-5ebb-489f-b7b8-08a6839fcab2",
+  "productId": "d0696b26-44b8-420c-855b-eac593582258",
+  "quantity": 650,
+  "paymentMethod": "BankTransfer"
+}
+```
+
+---
+
+## API Response & Error Handling
+
+The API returns responses in a consistent JSON format with the following structure:
+
+### Successful Response Example
+
+```json
+{
+  "success": true,
+  "message": "Operation completed successfully.",
+  "data": {
+  }
+}
+```
+### Error  Response Example
+
+```json
+{
+  "success": false,
+  "message": "Validation failed.",
+  "errors": [
+  ]
+}
+```
+
+### Explanation
+
+- **Success Response**  
+  - `success`: `true` indicates the operation succeeded.  
+  - `message`: Descriptive success message.  
+  - `data`: Contains returned data, can be any object or null.
+
+- **Error Response**  
+  - `success`: `false` indicates operation failure.  
+  - `message`: General error message.  
+  - `errors`: List of detailed error messages (validation or other).
 
 ---
 
@@ -145,7 +220,7 @@ Set up your `appsettings.json` with the following keys:
 
 ---
 
-## Code Quality & Design Patterns
+## Software Architecture and Design Patterns
 
 - Clean, modular layered architecture separating API, application, infrastructure, and persistence concerns.
 - Service Manager pattern used for centralized service coordination.
