@@ -133,7 +133,6 @@ Set up your `appsettings.json` with the following keys:
 - Global exception handling returns standardized error responses with correlation IDs.
 - Use of Entity Framework Core ORM to prevent SQL injection.
 - Logging with Serilog including request correlation ID for traceability.
-- HTTPS enforcement and CORS configured securely.
 - Separation of concerns with layered architecture and DI.
 - Async programming patterns applied consistently.
 
@@ -147,21 +146,3 @@ Set up your `appsettings.json` with the following keys:
 - Dependency Injection used throughout.
 - Async/Await used for I/O-bound operations.
 - Logging and error handling implemented consistently.
-
----
-
-## Contributing
-
-Contributions are welcome! Please open issues or submit pull requests with clear descriptions.
-
----
-
-## License
-
-This project is licensed under the MIT License.
-
----
-
-## Contact
-
-For questions or support, contact [Your Name] at your.email@example.com
