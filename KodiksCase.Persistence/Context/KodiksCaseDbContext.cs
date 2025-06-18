@@ -18,6 +18,8 @@ namespace KodiksCase.Persistence.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Order>()
                 .HasOne(o => o.User)
                 .WithMany(u => u.Orders)
@@ -31,6 +33,15 @@ namespace KodiksCase.Persistence.Context
             modelBuilder.Entity<Product>()
                 .Property(p => p.Price)
                 .HasPrecision(18, 2);
+
+            modelBuilder.Entity<User>().HasData(
+                new User { Id = Guid.Parse("046a3a78-5ebb-489f-b7b8-08a6839fcab2"), FullName = "Kodiks Test", Email = "test@kodiks.com", Password = "AQAAAAIAAYagAAAAEK8w0qXxszvuE+7qBwzd7niDYPfxHkJqDbIdQy7tKoXHcPLyYsQNevYFDCgt6g7ZHA==" }
+            );
+
+            modelBuilder.Entity<Product>().HasData(
+                new Product { Id = Guid.Parse("d0696b26-44b8-420c-855b-eac593582258"), Name = "Product 1", Price = 1500.00m },
+                new Product { Id = Guid.Parse("49a382af-58f4-422b-a726-0408332d12bd"), Name = "Product 2", Price = 500.00m }
+            );
         }
     }
 }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KodiksCase.Persistence.Migrations
 {
     [DbContext(typeof(KodiksCaseDbContext))]
-    [Migration("20250617133200_init")]
+    [Migration("20250618142445_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -72,6 +72,20 @@ namespace KodiksCase.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("d0696b26-44b8-420c-855b-eac593582258"),
+                            Name = "Product 1",
+                            Price = 1500.00m
+                        },
+                        new
+                        {
+                            Id = new Guid("49a382af-58f4-422b-a726-0408332d12bd"),
+                            Name = "Product 2",
+                            Price = 500.00m
+                        });
                 });
 
             modelBuilder.Entity("KodiksCase.Shared.Models.User", b =>
@@ -95,6 +109,15 @@ namespace KodiksCase.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("046a3a78-5ebb-489f-b7b8-08a6839fcab2"),
+                            Email = "test@kodiks.com",
+                            FullName = "Kodiks Test",
+                            Password = "AQAAAAIAAYagAAAAEK8w0qXxszvuE+7qBwzd7niDYPfxHkJqDbIdQy7tKoXHcPLyYsQNevYFDCgt6g7ZHA=="
+                        });
                 });
 
             modelBuilder.Entity("KodiksCase.Shared.Models.Order", b =>

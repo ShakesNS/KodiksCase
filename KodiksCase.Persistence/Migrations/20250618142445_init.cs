@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace KodiksCase.Persistence.Migrations
 {
     /// <inheritdoc />
@@ -65,6 +67,20 @@ namespace KodiksCase.Persistence.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "Name", "Price" },
+                values: new object[,]
+                {
+                    { new Guid("49a382af-58f4-422b-a726-0408332d12bd"), "Product 2", 500.00m },
+                    { new Guid("d0696b26-44b8-420c-855b-eac593582258"), "Product 1", 1500.00m }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Email", "FullName", "Password" },
+                values: new object[] { new Guid("046a3a78-5ebb-489f-b7b8-08a6839fcab2"), "test@kodiks.com", "Kodiks Test", "AQAAAAIAAYagAAAAEK8w0qXxszvuE+7qBwzd7niDYPfxHkJqDbIdQy7tKoXHcPLyYsQNevYFDCgt6g7ZHA==" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_ProductId",
