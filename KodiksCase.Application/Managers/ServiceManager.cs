@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace KodiksCase.Application.Managers
 {
+    // ServiceManager acts as a centralized facade to expose and manage all application services.
+    // It provides a single access point for various service interfaces, simplifying dependency injection and usage.
     public class ServiceManager : IServiceManager
     {
         public ServiceManager(

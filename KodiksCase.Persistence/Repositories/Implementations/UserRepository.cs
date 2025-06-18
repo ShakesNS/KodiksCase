@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace KodiksCase.Persistence.Repositories.Implementations
 {
+    // Handles data operations specific to User entities, extending generic repository functionality.
     public class UserRepository : GenericRepository<User>, IUserRepository
     {
         private readonly KodiksCaseDbContext context;

@@ -39,6 +39,8 @@ namespace KodiksCase.Worker.Workers
                                   exclusive: false,
                                   autoDelete: false,
                                   arguments: null);
+
+            // Log that worker and queue are ready with a unique CorrelationId for tracing
             using (LogContext.PushProperty("CorrelationId", Guid.NewGuid().ToString()))
             {
                 logger.LogInformation("RabbitMQ channel and queue prepared. Worker started.");
@@ -50,6 +52,7 @@ namespace KodiksCase.Worker.Workers
         {
             var consumer = new AsyncEventingBasicConsumer(channel);
 
+            // Event handler for received messages
             consumer.ReceivedAsync += async (model, ea) =>
             {
                 var body = ea.Body.ToArray();
@@ -57,49 +60,65 @@ namespace KodiksCase.Worker.Workers
 
                 try
                 {
+                    // Deserialize the message to order DTO
                     var order = JsonSerializer.Deserialize<RabbitMqOrderDto>(message);
+
+                    // Log reception of new order message with correlation ID
                     using (LogContext.PushProperty("CorrelationId", Guid.NewGuid().ToString()))
                     {
                         logger.LogInformation("A new order message has been received. OrderId: {OrderId}", order.OrderId);
                     }
 
+                    // Simulate processing delay
                     await Task.Delay(1000);
 
+                    // Write processing log into Redis cache
                     await redisCacheService.SetProcessingLogAsync($"processed:{order.OrderId}", $"Processed at {DateTime.Now}");
+
+                    // Log that processing log was written to Redis
                     using (LogContext.PushProperty("CorrelationId", Guid.NewGuid().ToString()))
                     {
                         logger.LogInformation("Order processing log was written to Redis.Order processing log was written to Redis.A new order message was received. OrderId: {OrderId}", order.OrderId);
                     }
 
+                    // Read the processing log from Redis
                     var log = await redisCacheService.GetProcessingLogAsync($"processed:{order.OrderId}");
+
+                    // Log the retrieved Redis processing log
                     using (LogContext.PushProperty("CorrelationId", Guid.NewGuid().ToString()))
                     {
                         logger.LogInformation("Processing log read from Redis: {Log}", log);
                     }
+
+                    // Log successful order processing
                     using (LogContext.PushProperty("CorrelationId", Guid.NewGuid().ToString()))
                     {
                         logger.LogInformation("Order processed successfully. OrderId: {OrderId}", order.OrderId);
                     }
-                    Console.WriteLine($"Redis log: {log}");
 
+                    // Write logs and status to console for monitoring
+                    Console.WriteLine($"Redis log: {log}");
                     Console.WriteLine($"Order processed: {order.OrderId} at {DateTime.Now}");
 
-
+                    // Acknowledge message as processed to RabbitMQ
                     await channel.BasicAckAsync(ea.DeliveryTag, false);
                 }
                 catch (Exception ex)
                 {
+                    // Log any errors during message processing with correlation ID
                     using (LogContext.PushProperty("CorrelationId", Guid.NewGuid().ToString()))
                     {
                         logger.LogError(ex, "Error processing the order message.");
                     }
+                    // Output error to console for debugging
                     Console.WriteLine($"Error processing order message: {ex.Message}");
 
-                    // Hata durumunda mesajı kuyrukta bırak (requeue)
+                    // Still acknowledge the message to prevent re-delivery
                     await channel.BasicAckAsync(ea.DeliveryTag, false);
                 }
             };
 
+            // Start consuming messages from the queue without auto-acknowledge
             channel.BasicConsumeAsync(queue: queueName,
                                   autoAck: false,
                                   consumer: consumer);
@@ -111,6 +130,8 @@ namespace KodiksCase.Worker.Workers
         {
             channel?.CloseAsync();
             channel?.Dispose();
+
+            // Log worker stopping and channel closing with correlation ID
             using (LogContext.PushProperty("CorrelationId", Guid.NewGuid().ToString()))
             {
                 logger.LogInformation("Stopping Worker and closing the RabbitMQ channel.");

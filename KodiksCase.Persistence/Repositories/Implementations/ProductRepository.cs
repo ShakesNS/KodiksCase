@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace KodiksCase.Persistence.Repositories.Implementations
 {
+    // Handles data operations specific to Product entities, extending generic repository functionality.
     public class ProductRepository : GenericRepository<Product>, IProductRepository
     {
         private readonly KodiksCaseDbContext context;

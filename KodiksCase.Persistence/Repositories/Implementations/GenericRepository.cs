@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace KodiksCase.Persistence.Repositories.Implementations
 {
+    // Provides a generic repository implementation to handle common CRUD operations for any entity type.
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         private readonly KodiksCaseDbContext context;

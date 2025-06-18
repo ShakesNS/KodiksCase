@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace KodiksCase.Persistence.Managers
 {
+    // Coordinates and exposes all repository interfaces to simplify data access management.
     public class RepositoryManager : IRepositoryManager
     {
         private readonly KodiksCaseDbContext context;

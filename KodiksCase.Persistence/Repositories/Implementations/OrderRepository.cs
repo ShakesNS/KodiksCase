@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace KodiksCase.Persistence.Repositories.Implementations
 {
+    // Handles data operations specific to Order entities, extending generic repository functionality.
     public class OrderRepository : GenericRepository<Order>, IOrderRepository
     {
         private readonly KodiksCaseDbContext context;

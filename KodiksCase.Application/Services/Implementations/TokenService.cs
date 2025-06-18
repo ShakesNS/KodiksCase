@@ -12,14 +12,27 @@ using System.Threading.Tasks;
 
 namespace KodiksCase.Application.Services.Implementations
 {
+    /// <summary>
+    /// Service responsible for generating JWT tokens based on user identifiers.
+    /// </summary>
     public class TokenService : ITokenService
     {
         private readonly JwtSettings _jwtSettings;
+
+        /// <summary>
+        /// Initializes TokenService with JWT configuration settings.
+        /// </summary>
+        /// <param name="jwtOptions">Configuration options for JWT.</param>
         public TokenService(IOptions<JwtSettings> jwtOptions)
         {
             _jwtSettings = jwtOptions.Value;
         }
 
+        /// <summary>
+        /// Generates a JWT token string containing the user ID as a claim.
+        /// </summary>
+        /// <param name="userId">The unique identifier of the user.</param>
+        /// <returns>A signed JWT token string.</returns>
         public string GenerateToken(string userId)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key));

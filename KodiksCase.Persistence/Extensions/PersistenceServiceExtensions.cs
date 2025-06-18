@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace KodiksCase.Persistence.Extensions
 {
+    // Registers database context and repository services for data persistence.
     public static class PersistenceServiceExtensions
     {
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)

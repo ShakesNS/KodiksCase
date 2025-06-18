@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace KodiksCase.Application.Extensions
 {
+    // Extension method to register application services and configurations into the DI container
     public static class ApplicationServiceExtensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)

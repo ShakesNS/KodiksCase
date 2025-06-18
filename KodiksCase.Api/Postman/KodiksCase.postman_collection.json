@@ -1,0 +1,279 @@
+{
+	"info": {
+		"_postman_id": "acef1dd1-2fba-4ccd-b6de-3603a097ef80",
+		"name": "KodiksCase",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39501901"
+	},
+	"item": [
+		{
+			"name": "Order Controller",
+			"item": [
+				{
+					"name": "Create Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImRiZTRlOGUzLWZjMTItNGEyMC1iMmM5LTAzZWY2ZjMwMWQxMSIsImV4cCI6MTc1MDI0MTc0OSwiaXNzIjoiS29kaWtzQ2FzZUFwaSIsImF1ZCI6IktvZGlrc0Nhc2VDbGllbnQifQ.G83NfkA6QBQprz-KxXbvi6jvq52e7sxQMZVfpkRHOwY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": \"dbe4e8e3-fc12-4a20-b2c9-03ef6f301d11\",\r\n  \"productId\": \"456d98fa-fedd-486e-9732-fa47e70b5e88\",\r\n  \"quantity\": 2147483647,\r\n  \"paymentMethod\": \"BankTransfer\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7051/api/orders/create",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7051",
+							"path": [
+								"api",
+								"orders",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Orders By UserId",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImRiZTRlOGUzLWZjMTItNGEyMC1iMmM5LTAzZWY2ZjMwMWQxMSIsImV4cCI6MTc1MDIzMzM4NSwiaXNzIjoiS29kaWtzQ2FzZUFwaSIsImF1ZCI6IktvZGlrc0Nhc2VDbGllbnQifQ.dL4L34ijRhb_eE8MXzxlUmBNvE9SMqAjWhjxbXzg6H4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7051/api/orders/dbe4e8e3-fc12-4a20-b2c9-03ef6f301d11",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7051",
+							"path": [
+								"api",
+								"orders",
+								"dbe4e8e3-fc12-4a20-b2c9-03ef6f301d11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product Controller",
+			"item": [
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImRiZTRlOGUzLWZjMTItNGEyMC1iMmM5LTAzZWY2ZjMwMWQxMSIsImV4cCI6MTc1MDE3MDg0MCwiaXNzIjoiS29kaWtzQ2FzZUFwaSIsImF1ZCI6IktvZGlrc0Nhc2VDbGllbnQifQ.UjXRjttQuI2c2wMmai_BboRxETlFbVgllSUKGtUdVzo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Süt\",\r\n  \"price\": 10.00\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7051/api/product/create",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7051",
+							"path": [
+								"api",
+								"product",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Product",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImU5Y2ZkYmJlLTkwZDUtNGFiNi0yNTM1LTA4ZGRhZTU3ZTc1MCIsImV4cCI6MTc1MDI1MjI5NCwiaXNzIjoiS29kaWtzQ2FzZUFwaSIsImF1ZCI6IktvZGlrc0Nhc2VDbGllbnQifQ.yH9PtZuLjvCR3yv8tTIt1a-UIkTU9iMy_vtdlHafW_M",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:7051/api/product/list",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7051",
+							"path": [
+								"api",
+								"product",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImUyYmNjZmZmLTgzZTctNGM0MS04ODMxLWUxZjFkMGU1MDY1YSIsImV4cCI6MTc1MDE2OTkzNywiaXNzIjoiS29kaWtzQ2FzZUFwaSIsImF1ZCI6IktvZGlrc0Nhc2VDbGllbnQifQ.FblSOpZfSFK21Hgyu5-FZ8jSh9ckM7wMS5HtLYHbTho",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7051/api/product/456d98fa-fedd-486e-9732-fa47e70b5e88",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7051",
+							"path": [
+								"api",
+								"product",
+								"456d98fa-fedd-486e-9732-fa47e70b5e88"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Controller",
+			"item": [
+				{
+					"name": "User Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"test@gmail.com\",\r\n  \"fullName\":\"test\",\r\n  \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7051/api/user/register",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7051",
+							"path": [
+								"api",
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"test@gmail.com\",\r\n  \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7051/api/user/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7051",
+							"path": [
+								"api",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImUyYmNjZmZmLTgzZTctNGM0MS04ODMxLWUxZjFkMGU1MDY1YSIsImV4cCI6MTc1MDE2OTkzNywiaXNzIjoiS29kaWtzQ2FzZUFwaSIsImF1ZCI6IktvZGlrc0Nhc2VDbGllbnQifQ.FblSOpZfSFK21Hgyu5-FZ8jSh9ckM7wMS5HtLYHbTho",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://localhost:7051/api/user/list",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7051",
+							"path": [
+								"api",
+								"user",
+								"list"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
