@@ -123,6 +123,13 @@ Set up your `appsettings.json` with the following keys:
 - Use the **Authorize** button in Swagger UI to set your JWT token.
 - Login to obtain token, then test protected endpoints.
 - Redis and RabbitMQ must be running for full functionality.
+- The Postman collection JSON file is located inside the **Postman** folder within the **API project** (`KodiksCase.Api`).  
+  To use it:
+  1. Open Postman.  
+  2. Click the **Import** button.  
+  3. Select the JSON file at `KodiksCase.Api/Postman/KodiksCase.postman_collection.json`.  
+  4. The collection will be imported and ready for testing the API endpoints.
+
 
 ---
 
